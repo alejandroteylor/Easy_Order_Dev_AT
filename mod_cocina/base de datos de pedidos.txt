@@ -1,0 +1,85 @@
+create database pedidos;
+use pedidos;
+
+create table platos(
+id_plato int not null,
+nombre_plato varchar (50) not null,
+cantidad_plato int not null,
+tiempo_plato time not null,
+estado_plato varchar (50) not null,
+primary key (id_plato)
+);
+
+insert into platos values (1,'arroz',3,'1:30','preparando');
+insert into platos values (2,'sopa',3,'3:00','preparando');
+insert into platos values (3,'arroz y papas',5,'5:00','preparando');
+insert into platos values (4,'carne ensalada arroz y jugo',1,'1:00','preparando');
+insert into platos values (5,'sopa de mute con arroz chino y limonada',2,'2:00','preparando');
+insert into platos values (6,'arroz y frijoles',1,'1:00','preparando');
+insert into platos values (7,'arroz con pollo y papas',3,'3:00','preparando');
+insert into platos values (8,'arroz con pulpo y calamar ',5,'5:00','preparando');
+insert into platos values (9,'arroz con papas a la francesa',2,'1:00','preparando');
+insert into platos values (10,'arroz con frutas',1,'1:00','preparando');
+insert into platos values (11,'arroz con yuca',6,'5:30','preparando');
+insert into platos values (12,'arroz  yuca papas y jugo',6,'5:30','preparando');
+
+create database pedidos realizados;
+use pedidos realizados;
+
+create table plato(
+id_plato int not null,
+nombre_plato varchar (50) not null,
+cantidad_plato int not null,
+tiempo_plato time not null,
+estado_plato varchar (50) not null,
+hora_plato time not null,
+primary key (id_plato)
+);
+
+insert into plato values (1,'arroz',3,'1:30','preparado','13:00');
+insert into plato values (2,'sopa',3,'3:00','preparado','09:00');
+insert into plato values (3,'arroz y papas',5,'5:00','preparado','10:00');
+insert into plato values (4,'carne ensalada arroz y jugo',1,'1:00','preparado','11:00');
+insert into plato values (5,'sopa de mute con arroz chino y limonada',2,'2:00','preparado','16:00');
+insert into plato values (6,'arroz y frijoles',1,'1:00','preparado','19:00');
+insert into plato values (7,'arroz con pollo y papas',3,'3:00','preparado','15:00');
+insert into plato values (8,'arroz con pulpo y calamar ',5,'5:00','preparado','14:00');
+insert into plato values (9,'arroz con papas a la francesa',2,'1:00','preparado','12:00');
+insert into plato values (10,'arroz con frutas',1,'1:00','preparado','17:00');
+
+
+create database pagos;
+use pagos;
+
+create table PagosPendientes(
+idPagosPendiente int not null,
+nombre_plato varchar (50) not null,
+cantidad_plato int not null,
+mesa_pago int not null,
+valor_plato int(50) not null,
+estado_pedido varchar (50) not null,
+hora_pago time not null,
+primary key(cod_estado_pepdido)
+);
+
+insert into PagosPendientes values (1,'arroz con pulpo',1,5,5200,'preparando','12:00');
+insert into PagosPendientes values (2,'arroz con carne',2,2,10000,'preparando','13:00');
+insert into PagosPendientes values (3,'arroz con pasta',3,6,15000,'preparando','19:00');
+insert into PagosPendientes values (4,'sopa',1,9,5200,'preparando','10:00');
+
+create table PagosRealizados(
+id_PagosRealizados int not null,
+nombre_plato varchar (50) not null,
+cantidad_plato int not null,
+mesa_plato int not null,
+valor_plato int not null,
+codestado_pedido varchar (50) not null,
+hora_pago time not null,
+primary key(id_PagosPendiente),
+foreign key (cestad_pedido) references PagosPendientes (codestado_pedido) 
+);
+
+insert into PagosRealizados values (1,'arroz con pulpo',1,5,5200,'preparado','12:00');
+insert into PagosRealizados values (2,'arroz con carne',2,2,10000,'preparado','13:00');
+insert into PagosRealizados values (3,'arroz con pasta',3,6,15000,'preparado','19:00');
+insert into PagosRealizados values (4,'sopa',1,9,5200,'preparado','10:00');
